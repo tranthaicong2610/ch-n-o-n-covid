@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form action="">
+    <form action="client-list.php">
 
         <div class="box-title-new">
             <div class="box-title-name-new">
