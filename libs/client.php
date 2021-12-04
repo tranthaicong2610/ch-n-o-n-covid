@@ -61,7 +61,51 @@ function get_client($client_id)
      
     return $result;
 }
- 
+
+// , $client_vaccine, $client_habitat, $client_sex,
+// $client_weather, $client_test, $client_case, $client_fever,
+// $client_cough, $client_tired, $client_stuffy, $client_chest_tightness,
+// $client_other,$result
+// function add_client( $client_name, 
+// $client_age ,$client_vaccine,$client_habitat,$client_sex,$client_weather,$client_test,$client_case,$client_fever,$client_cough)
+// {
+//     // Gọi tới biến toàn cục $conn
+//     global $conn;
+     
+//     // Hàm kết nối
+//     connect_db();
+     
+    // Chống SQL Injection
+    // $client_name       = addslashes($client_name);
+    // $client_sex        = addslashes($client_sex);
+    // $client_age   = addslashes($client_age);
+    // $client_vaccine       = addslashes($client_vaccine);
+    // $client_habitat        = addslashes($client_habitat);
+
+    // $client_weather       = addslashes($client_weather);
+    // $client_test        = addslashes($client_test);
+    // $client_case   = addslashes($client_case);
+    // $client_fever       = addslashes($client_fever);
+    // $client_cough        = addslashes($client_cough);
+    // $client_tired   = addslashes($client_tired);
+
+    //  $client_stuffy       = addslashes($client_stuffy);
+    // $client_chest_tightness        = addslashes($client_chest_tightness);
+    // $client_other   = addslashes($client_other);
+    // $result       = addslashes($result);
+     
+    // Câu truy vấn thêm
+//     $sql = "
+//             INSERT INTO tb_client(client_name, client_age,client_vaccine,client_habitat,client_sex,client_weather,client_test,client_case,client_fever,client_cough) VALUES
+//             ('$client_name','$client_age','$client_vaccine','$client_habitat','$client_sex','$client_weather','$client_test','$client_case','$client_fever','$client_cough')
+//     ";
+     
+//     // Thực hiện câu truy vấn
+//     $query = mysqli_query($conn, $sql);
+     
+//     return $query;
+// } 
+
 function add_client( $client_name, 
 $client_age, $client_vaccine, $client_habitat, $client_sex,
 $client_weather, $client_test, $client_case, $client_fever,
@@ -77,7 +121,6 @@ $client_other,$result)
     $client_age   = addslashes($client_age);
     $client_vaccine       = addslashes($client_vaccine);
     $client_habitat        = addslashes($client_habitat);
-    $client_sex   = addslashes($client_sex);
 
     $client_weather       = addslashes($client_weather);
     $client_test        = addslashes($client_test);
@@ -92,7 +135,9 @@ $client_other,$result)
     $result       = addslashes($result);
      
     $sql = "
-            INSERT INTO tb_client(sv_name, sv_sex, sv_birthday) VALUES
+            INSERT INTO tb_client(client_name, client_age, client_vaccine,client_habitat,client_sex,
+            client_weather,client_test,client_case,client_fever,client_cough,client_tired,
+            client_stuffy,client_chest_tightness,client_other,result) VALUES
             ('$client_name', 
             '$client_age', '$client_vaccine', '$client_habitat', '$client_sex',
            '$client_weather', '$client_test', '$client_case', '$client_fever',
@@ -117,7 +162,6 @@ $client_other,$result)
     connect_db();
      
     $client_name       = addslashes($client_name);
-    $client_sex        = addslashes($client_sex);
     $client_age   = addslashes($client_age);
     $client_vaccine       = addslashes($client_vaccine);
     $client_habitat        = addslashes($client_habitat);
@@ -152,7 +196,7 @@ $client_other,$result)
             client_chest_tightness = '$client_chest_tightness',
             client_other='$client_other',
             result = '$result'
-            WHERE sv_id = $client_id
+            WHERE client_id = $client_id
 
     ";
      

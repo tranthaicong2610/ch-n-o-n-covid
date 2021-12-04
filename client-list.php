@@ -25,7 +25,6 @@ disconnect_db();
             <tr>
                 <td><?php echo $item['client_id']; ?></td>
                 <td><?php echo $item['client_name']; ?></td>
-                <td><?php echo $item['client_result']; ?></td>
                 <td>
                     <form method="post" action="client-delete.php">
                         <input onclick="window.location = 'client-edit.php?id=<?php echo $item['client_id']; ?>'" type="button" value="Sửa"/>
@@ -33,6 +32,7 @@ disconnect_db();
                         <input onclick="return confirm('Bạn có chắc muốn xóa không?');" type="submit" name="delete" value="Xóa"/>
                     </form>
                 </td>
+                <td><a href="./client_result.php">chẩn đoán </a></td>
             </tr>
             <?php } ?>
         </table>
