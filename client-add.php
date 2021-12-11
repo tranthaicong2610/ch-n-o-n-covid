@@ -18,24 +18,52 @@
         $so8=0;
         // tiem vaccine
         $data['vaccine']=isset($_POST['vaccine'])?$_POST['vaccine'] :'0';
-        $f2=$data['vaccine'];
+        if($data['vaccine']=='v1') $so2+=0.5;
+        if($data['vaccine']=='v2') $so2+=0.75;
+        if($data['vaccine']=='v3') $so2+=0.66;
+        if($data['vaccine']=='v4') $so2+=0.79;
+        if($data['vaccine']=='v5') $so2+=0.88;
+        if($data['vaccine']=='v6') $so2+=0.89;
+        if($data['vaccine']=='v7') $so2+=0.91;
+        if($data['vaccine']=='v8') $so2+=0.94;
+        
         // giơi tính 
         $data['sex']         = isset($_POST['sex']) ? $_POST['sex'] : '0';
+        if($data['sex']=='n1') $so3+=0.0161;
+        if($data['sex']=='n2') $so3+=0.013;
+        
         // Ban thuoc dang nao
         $data['fmay']         = isset($_POST['fmay']) ? $_POST['fmay'] : '0';
+        if($data['fmay']=='f1') $so8+=0.037;
+        if($data['fmay']=='f2') $so8+=0.007;
+        if($data['fmay']=='f3') $so8+=0.0007;
+        if($data['fmay']=='f4') $so8+=0.00007;
         
 
 
         // xet nghiem chưa
         $data['test']         = isset($_POST['test']) ? $_POST['test'] : '0';
-
+        if($data['test']=='c1') $so6+=0.972;
+        if($data['test']=='c2') $so6+=0.65;
         // tuoi 
         $data['age']=isset($_POST['age'])?$_POST['age']:'0';
+        if($data['age']=='d1') $so7+=0.0154;
+        if($data['age']=='d2') $so7+=0.0558;
+        if($data['age']=='d3') $so7+=0.022;
+        if($data['age']=='d4') $so7+=0.068;
+
         // nhiet do trung binh
         $data['nhiet_do']         = isset($_POST['nhiet_do']) ? $_POST['nhiet_do'] : '0';
+        if($data['nhiet_do']=='t1') $so5+=0;
+        if($data['nhiet_do']=='t2') $so5+=0.0001;
+        if($data['nhiet_do']=='t3') $so5+=0.005;
+        if($data['nhiet_do']=='t4') $so5+=0.01;
         // khu vực sống
         $data['noi_song']         = isset($_POST['noi_song']) ? $_POST['noi_song'] : '0';
-        
+        if($data['noi_song']=='vx') $so4+=0.00025;
+        if($data['noi_song']=='vv') $so4+=0.0005;
+        if($data['noi_song']=='vc') $so4+=0.001;
+        if($data['noi_song']=='vd') $so4+=0.0015;
         // các triệu chứng
 
         $data['tc1']         = isset($_POST['tc1']) ? $_POST['tc1'] : '0';
@@ -44,20 +72,31 @@
         $data['tc4']         = isset($_POST['tc4']) ? $_POST['tc4'] : '0';
         $data['tc5']         = isset($_POST['tc5']) ? $_POST['tc5'] : '0';
         $data['tc6']         = isset($_POST['tc6']) ? $_POST['tc6'] : '0';
+        if($data['tc1']!='0') $so1+=0.8*0.2;
+        if($data['tc2']!='0') $so1+=0.7*0.15;
+        if($data['tc3']!='0') $so1+=0.23*0.05;
+        if($data['tc4']!='0') $so1+=0.2*0.3;
+        if($data['tc5']!='0') $so1+=0.12*0.2;
+        if($data['tc6']!='0') $so1+=0.25*0.3;
+
         // Validate thong tin
         $errors = array();
         if ($data['client_name']=='0'){
-            $errors['client_name'] = 'Chưa nhập tên sinh vien';
+            $errors['client_name'] = 'Bạn chưa nhập tên';
         }
          
+        // ham xu ly 
+        $so=$so1-$so2+$so3+$so4+$so5+$so6+$so7+$so8;
+        if($so<0.3) $result="Bạn đang an toàn nhưng đừng chủ quan hay giữ gìn bản thân bằng các biện pháp 5k";
+        else if($so<0.6) $result="Bạn có nguy cơ mắc covid hay thử đến các cơ quan y tế gần nhất kiểm tra .Bạn nên hạn chế tiếp xúc với mọi người khi không cần thiết";
+        else $result="Bạn có nguy cơ cao mắc covid và nhanh tróng báo ngay cho các cơ quan y tế";
         // Neu ko co loi thi insert
 
-        $result="i do not";
         if (!$errors){
             add_client($data['client_name'], 
-            $data['client_age'],$data['client_vaccine'],$data['client_habitat'],$data['client_sex'],
-            $f5, $f6, $f8, $client_fever,
-            $client_cough, $data['tc1'] ,$data['tc2'] ,$data['tc3'] ,$data['tc4'] ,$data['tc5'] ,$data['tc6'] ,$result);
+            $data['age'],$data['vaccine'],$data['noi_song'],$data['sex'],
+            $data['nhiet_do'], 
+            $data['test'],$data['case'], $data['tc1'] ,$data['tc2'] ,$data['tc3'] ,$data['tc4'] ,$data['tc5'] ,$data['tc6'] ,$result);
             // Trở về trang danh sách
             header("location: client-list.php");
         }

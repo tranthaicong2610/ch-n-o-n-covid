@@ -1,3 +1,12 @@
+<?php
+require './libs/client.php';
+$id=isset($_GET['id']) ?$_GET['id'] :'';
+if($id=='') header("Location: client-list.php");
+$client = get_client($id);
+
+disconnect_db();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,17 +28,10 @@
         </thead>
         <tbody>
             <tr>
-                <td>Mark</td>
-                <td>Otto</td>
+                <td><?php echo $client['client_name'] ?></td>
+                <td><?php echo $client['result'] ?></td>
             </tr>
-            <tr>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            
         </tbody>
     </table>
 </body>
