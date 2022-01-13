@@ -1,0 +1,51 @@
+body {
+    background-color: lightblue;
+    font-size: 20px;
+}
+
+a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+button.back {
+    border-radius: 15px;
+    background-color: rgb(47, 148, 60);
+}
+
+button.back :hover {
+    border-radius: 15px;
+    background-color: rgb(153, 0, 0);
+}
+
+input {
+    color: blanchedalmond;
+    font-size: 20px;
+    padding: 5px;
+    background-color: rgb(49, 38, 38);
+}
+
+input.save {
+    border-radius: 15px;
+    width: 100px;
+    background-color: rgb(49, 38, 38);
+}
+
+input.save:hover {
+    border-radius: 15px;
+    background-color: rgb(42, 35, 109);
+}
+
+select {
+    color: blanchedalmond;
+    font-size: 20px;
+    padding: 5px;
+    background-color: rgb(49, 38, 38);
+}
+
+h1 {
+    text-align: center;
+    display: block;
+    font-size: 50px;
+}

@@ -1,5 +1,6 @@
 <?php
-require './libs/client.php';
+require './libs/clients.php';
+;
  
 // Thực hiện xóa
 $id = isset($_POST['id']) ? (int)$_POST['id'] : '';
@@ -9,4 +10,5 @@ if ($id){
  
 // Trở về trang danh sách
 header("location: client-list.php");
+
 ?>

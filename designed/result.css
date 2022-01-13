@@ -1,0 +1,35 @@
+body {
+    background-color: lightblue;
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+    display: block;
+    font-size: 50px;
+}
+
+table {
+    font-size: 30px;
+}
+
+td {
+    padding: 20px;
+    margin: 20px;
+}
+
+a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    width: 100px;
+    background-color: blue;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: red;
+}
