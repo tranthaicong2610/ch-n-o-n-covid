@@ -1,8 +1,6 @@
 <?php
-// Biến kết nối toàn cục
 global $conn;
 
-// Hàm kết nối database
 function connect_db()
 {
     global $conn;
@@ -13,7 +11,6 @@ function connect_db()
     }
 }
 
-// Hàm ngắt kết nối
 function disconnect_db()
 {
     global $conn;
@@ -155,10 +152,8 @@ function edit_client($client_id,
     $client_other,
     $result
 ) {
-    // Gọi tới biến toàn cục $conn
     global $conn;
 
-    // Hàm kết nối
     connect_db();
 
     // Chống SQL Injection
@@ -180,7 +175,6 @@ function edit_client($client_id,
     $client_other   = addslashes($client_other);
     $result = addslashes($result);
 
-    // Câu truy sửa
     $sql = "
             UPDATE tb_sinhvien1 SET
             client_name = '$client_name',
@@ -203,14 +197,12 @@ function edit_client($client_id,
             WHERE client_id = '$client_id'
     ";
 
-    // Thực hiện câu truy vấn
     $query = mysqli_query($conn, $sql);
 
     return $query;
 }
 
 
-// Hàm xóa sinh viên
 function delete_client($client_id)
 {
     global $conn;

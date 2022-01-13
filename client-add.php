@@ -3,7 +3,6 @@
 require './libs/clients.php';
 
 
-// Nếu người dùng submit form
 if (!empty($_POST['add_client'])) {
 
     // Lay data
@@ -86,15 +85,11 @@ if (!empty($_POST['add_client'])) {
         $errors['client_name'] = 'Chưa nhập tên sinh vien';
     }
 
-    // if (empty($data['client_sex'])) {
-    //     $errors['client_sex'] = 'Chưa nhập giới tính khach hang';
-    // }
-    // ham xu ly 
+    
     $so = $so1 - $so2 + $so3 + $so4 + $so5 + $so6 + $so7 + $so8;
     if ($so < 0.3) $result = "Bạn đang an toàn nhưng đừng chủ quan hay giữ gìn bản thân bằng các biện pháp 5k";
     else if ($so < 0.6) $result = "Bạn có nguy cơ mắc covid hay thử đến các cơ quan y tế gần nhất kiểm tra .Bạn nên hạn chế tiếp xúc với mọi người khi không cần thiết";
     else $result = "Bạn có nguy cơ cao mắc covid và nhanh tróng báo ngay cho các cơ quan y tế";
-    // Neu ko co loi thi insert
     if (!$errors) {
         add_client(
             $data['client_name'],
@@ -114,7 +109,6 @@ if (!empty($_POST['add_client'])) {
             $result
         );
 
-        // Trở về trang danh sách
         header("location: client-list.php");
     }
 }

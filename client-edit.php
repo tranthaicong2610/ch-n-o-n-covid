@@ -2,21 +2,17 @@
 
 require './libs/clients.php';
 
-// Lấy thông tin hiển thị lên để người dùng sửa
 $id = isset($_GET['id']) ? (int)$_GET['id'] : '';
 if ($id){
     $data = get_client($id);
 }
 
-// Nếu không có dữ liệu tức không tìm thấy sinh viên cần sửa
 if (!$data){
    header("location: client-list.php");
 }
 
-// Nếu người dùng submit form
 if (!empty($_POST['edit_client']))
 {
-   // Lay data
    $data['client_name']        = isset($_POST['name']) ? $_POST['name'] : '0';
 
    // xac suat
@@ -96,9 +92,6 @@ if (!empty($_POST['edit_client']))
        $errors['client_name'] = 'Chưa nhập tên sinh vien';
    }
 
-   // if (empty($data['client_sex'])) {
-   //     $errors['client_sex'] = 'Chưa nhập giới tính khach hang';
-   // }
    // ham xu ly 
    $so = $so1 - $so2 + $so3 + $so4 + $so5 + $so6 + $so7 + $so8;
    if ($so < 0.3) $result = "Bạn đang an toàn nhưng đừng chủ quan hay giữ gìn bản thân bằng các biện pháp 5k";
@@ -124,7 +117,6 @@ if (!empty($_POST['edit_client']))
            $result
        );
 
-       // Trở về trang danh sách
        header("location: client-list.php");
    }
 }
