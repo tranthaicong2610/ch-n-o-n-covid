@@ -94,6 +94,8 @@ if (!empty($_POST['edit_client']))
 
    // ham xu ly 
    $so = $so1 - $so2 + $so3 + $so4 + $so5 + $so6 + $so7 + $so8;
+    $data['tien_su']=isset($_POST['tien_su'])? $_POST['tien_su']:'0'; 
+    if($_POST['tien_su']='yes') $so=$so*1.5;
    if ($so < 0.3) $result = "Bạn đang an toàn nhưng đừng chủ quan hay giữ gìn bản thân bằng các biện pháp 5k";
    else if ($so < 0.6) $result = "Bạn có nguy cơ mắc covid hay thử đến các cơ quan y tế gần nhất kiểm tra .Bạn nên hạn chế tiếp xúc với mọi người khi không cần thiết";
    else $result = "Bạn có nguy cơ cao mắc covid và nhanh tróng báo ngay cho các cơ quan y tế";
@@ -247,7 +249,16 @@ disconnect_db();
                         hay ngón tay ngón chân bị tấy đỏ hoặc tím tái)
                 </td>
             </tr>
+            <tr>
+                <td>bạn thuộc người có tiền sử bệnh nền hoặc là phụ nữ mang thai không ?</td>
+                <td>
+                    <select name="tien_su" id="cars">
+                        <option value="yes">Có </option>
+                        <option value="no">Không</option>
+                    </select>
+                </td>
 
+            </tr>
                 <tr>
                     <td></td>
                     <td>
